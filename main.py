@@ -1,32 +1,27 @@
-import pandas as pd
-df1 = pd.read_csv("https://pythonhow.com/data/income_data.csv")
-df2 = df1.set_index("State", drop=False)
-# Instead of getting an auto-generated index, we set it states
-# drop: Delete columns to be used as the new index.
+import matplotlib.pyplot as plt
+# line 1 points
+x1 = [10, 20, 30]
+y1 = [20, 40, 10]
 
-# Extracting a subset of a pandas dataframe
-df2.loc["Alaska":"Arkansas", "2005":"2007"]
-# This will print everything from
+# plotting the line 1 points
+plt.plot(x1, y1, label="line 1")
 
-# Extracting a column of a pandas dataframe
-df2.loc[:, "2005"]
-df2["2005"]
+# line 2 points
+x2 = [10, 20, 30]
+y2 = [40, 10, 30]
 
-# Extracting a row of a pandas dataframe
-df2.loc["California", :]
+# plotting the line 2 points
+plt.plot(x2, y2, label="line 2")
 
-# Extracting specific columns of a pandas dataframe
-df2[["2005", "2008", "2009"]]
+# Setting the axis-labels
+plt.xlabel('x - axis')
+plt.ylabel('y - axis')
 
-# Extracting specific rows of a pandas dataframe
-df2[1:3]
+# Set a title of the current axes.
+plt.title('Two or more lines on same plot with suitable legends ')
 
-# Extracting a single cell from a pandas dataframe
-df2.loc["California", "2013"]
+# show a legend on the plot
+plt.legend()
 
-# Position based indexing
-df2.iloc[0:3, 0:4]
-# df2.ix[0:3, "2005":"2007"]
-
-print(df2)
-print(df2.loc[:, "2005"].mean())
+# Display a figure.
+plt.show()

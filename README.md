@@ -22,7 +22,67 @@
 
 ### What does it mean that an array has a shape?
 
+The shape property is usually used to get the current shape of an array, but may also be used to reshape the array in-place by assigning a tuple of array dimensions to it.
+
+```python
+data = [1, 2, 3]
+x = np.array(data)
+x.shape
+```
+
+has shape (4,)
+
+```python
+data = [[1, 2, 3], [4, 5, 6]]
+x = np.array(data)
+x.shape
+```
+
+has shape (2, 3)
+
+```python
+data = [[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]]
+x = np.array(data)
+x.shape
+```
+
+has shape (2, 2, 3)
+
+ref: https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.shape.html
+
 ### How do you plot multiple lines in Matplotlib?
+
+```python
+import matplotlib.pyplot as plt
+# Line 1 points
+x1 = [10, 20, 30]
+y1 = [20, 40, 10]
+
+# Plotting the line 1 points
+plt.plot(x1, y1, label="line 1")
+
+# Line 2 points
+x2 = [10, 20, 30]
+y2 = [40, 10, 30]
+
+# Plotting the line 2 points
+plt.plot(x2, y2, label="line 2")
+
+# Setting the axis-labels
+plt.xlabel('x - axis')
+plt.ylabel('y - axis')
+
+# Set a title of the current axes.
+plt.title('Two or more lines on same plot with suitable legends ')
+
+# show a legend on the plot
+plt.legend()
+
+# Display a figure.
+plt.show()
+```
+
+![output](./img/twolines.png)
 
 ## Intro to Pandas
 
