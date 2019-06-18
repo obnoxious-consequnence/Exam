@@ -1,20 +1,5 @@
-import sys
+import pandas as pd
+df1 = pd.read_csv("https://pythonhow.com/data/income_data.csv")
+df2 = df1.set_index("State")
 
-
-def linux_interaction():
-    assert ('linux' in sys.platform), "Function can only run on Linux systems."
-    print('Doing something.')
-
-
-try:
-    linux_interaction()
-except AssertionError as error:
-    print(error)
-else:
-    try:
-        with open('file.log') as file:
-            read_data = file.read()
-    except FileNotFoundError as fnf_error:
-        print(fnf_error)
-finally:
-    print('Cleaning up, irrespective of any exceptions.')
+df2.loc[:, "2005":"2010"]
