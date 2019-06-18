@@ -1,27 +1,20 @@
-import matplotlib.pyplot as plt
-# line 1 points
-x1 = [10, 20, 30]
-y1 = [20, 40, 10]
+import sys
 
-# plotting the line 1 points
-plt.plot(x1, y1, label="line 1")
 
-# line 2 points
-x2 = [10, 20, 30]
-y2 = [40, 10, 30]
+def linux_interaction():
+    assert ('linux' in sys.platform), "Function can only run on Linux systems."
+    print('Doing something.')
 
-# plotting the line 2 points
-plt.plot(x2, y2, label="line 2")
 
-# Setting the axis-labels
-plt.xlabel('x - axis')
-plt.ylabel('y - axis')
-
-# Set a title of the current axes.
-plt.title('Two or more lines on same plot with suitable legends ')
-
-# show a legend on the plot
-plt.legend()
-
-# Display a figure.
-plt.show()
+try:
+    linux_interaction()
+except AssertionError as error:
+    print(error)
+else:
+    try:
+        with open('file.log') as file:
+            read_data = file.read()
+    except FileNotFoundError as fnf_error:
+        print(fnf_error)
+finally:
+    print('Cleaning up, irrespective of any exceptions.')
