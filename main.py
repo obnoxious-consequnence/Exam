@@ -1,5 +1,10 @@
-import pandas as pd
-df1 = pd.read_csv("https://pythonhow.com/data/income_data.csv")
-df2 = df1.set_index("State")
+# Create the dictionary with graph elements
+graph = {"a": ["b", "c"],
+         "b": ["a", "d"],
+         "c": ["a", "d"],
+         "d": ["e"],
+         "e": ["d"]
+         }
 
-df2.loc[:, "2005":"2010"]
+# Print the graph
+print(graph)

@@ -436,25 +436,190 @@ ref: https://pythonhow.com/data-analysis-with-python-pandas
 
 ### What is the difference between an iterator and a generator?
 
+![itergene](./img/itergene.png)
+
+An iterable is an object that implements the **iter** method. An iterable is any object that can be a file pointer and return an iterator. A Python list object is iterable.
+
+An iterator is an object that implements the iterable protocol as it also responds to the `next()` method. To use iterable and iterator, there is a simple iterable protocol which is driven by two functions, `iter()` and `next()`.
+
+A generator is a special kind of iterator. All generators are iterators but all iterators are not generators. Each time the yield statement is executed, the generator function generates a new value.
+When a generator function gets called, then a generator object is returned without even beginning the execution of the generator function. When the `next()` function is called for the first time, the generator function starts executing until it reaches the yield statement. The yielded value is returned by the `next()` call.
+
+The generator function is that in which the keyword yield appears in its body. The other type of generator is the generator expression, which is equivalent to a list comprehension.
+
+**Generator**
+
+```python
+def square_numbers(nums):
+    for i in nums:
+        yield i * i
+
+my_generator = square_numbers(1, 2, 3, 4, 5)
+
+# Do this 4 more times (5 total)
+print(next(my_generator))
+# output: 1, 4, 9, 16, 25
+```
+
+However, instead of having to make 5 prints, we can do this in a for loop
+
+```python
+for nums in my_generator:
+    print(nums)
+    # output: 1, 4, 9, 16, 25
+```
+
+Now let's do it as a list comprehension
+**_note:_** _that we use () instead of []_
+
+```python
+my_generator = (x*x for x in [1, 2, 3, 4, 5])
+
+for nums in my_generator:
+    print(nums)
+    # output: 1, 4, 9, 16, 25
+```
+
+ref: https://www.youtube.com/watch?v=bD05uGo_sVI
+
 ### How do you parallelise programs in Python?
+
+Parallel processing is a mode of operation where the task is executed simultaneously in multiple processors in the same computer. It is meant to reduce the overall processing time.
+
+**How many maximum parallel processes can you run**
+
+```python
+import multiprocessing as mp
+print("Number of processors: ", mp.cpu_count())
+```
+
+**What is Synchronous and Asynchronous execution**
+
+In parallel processing, there are two types of execution: Synchronous and Asynchronous.
+
+A **synchronous** execution is when the processes are completed in the same order in which it was started. This is achieved by locking the main program until the respective processes are finished.
+
+Asynchronous, on the other hand, doesn’t involve locking. As a result, the order of results can get mixed up but usually gets done quicker.
+
+For asynchronous execution the methods have `_async()` behind the method name, where as synchronous execution dosn't
+
+ref: https://www.machinelearningplus.com/python/parallel-processing-python/
 
 ## Graphs & PageRank
 
 ### What is a graph?
 
+A graph is a pictorial representation of a set of objects where some pairs of objects are connected by links. The interconnected objects are represented by points termed as vertices, and the links that connect the vertices are called edges.
+
+A graph can be easily presented using the python dictionary data types. We represent the vertices as the keys of the dictionary and the connection between the vertices also called edges as the values in the dictionary.
+
+![graph](./img/graph.PNG)
+
+```python
+V = {a, b, c, d, e}
+E = {ab, ac, bd, cd, de
+```
+
+We can now present this graph, as seen below
+
+```python
+# Create the dictionary with graph elements
+graph = { "a" : ["b","c"],
+          "b" : ["a", "d"],
+          "c" : ["a", "d"],
+          "d" : ["e"],
+          "e" : ["d"]
+         }
+
+# Print the graph
+print(graph)
+```
+
+output:
+
+```python
+{'c': ['a', 'd'], 'a': ['b', 'c'], 'e': ['d'], 'd': ['e'], 'b': ['a', 'd']}
+```
+
+ref: https://www.tutorialspoint.com/python/python_graphs.htm
+
 ### Why does the PageRank algorithm exist?
+
+PageRank (PR) is an algorithm used by Google Search to rank web pages in their search engine results. PageRank was named after Larry Page,[1] one of the founders of Google. PageRank is a way of measuring the importance of website pages. According to Google:
+
+![pr](./img/pagerank.PNG)
+
+Where `PR(p)` is the page rank of page `p`, `N` is the total number of pages, `in_i` are the pages that link to page `p` and `C(in_i)` is the count of the total number of out-links on page `in_i`. The constant `d` is a dampening factor to reduce the value for each link.
+
+ref: [git-materials](https://github.com/datsoftlyngby/dat4sem2019spring-python-materials/blob/master/20-Graphs%20and%20PageRank.ipynb) and [PageRank Wiki](https://en.wikipedia.org/wiki/PageRank)
 
 ## Webscraping Basics, Regular Expr. & Selenium
 
 ### What is a regular expression?
 
+Regex is a sequence of characters that define a search pattern.
+
+Regex is most commenly used by string searching algorithms for "find" or "find and replace" operations on strings, or for input validation.
+
+Here's on example on how to find a phonenumber (xx xx xx xx)
+
+```python
+import re
+
+phone_number = re.compile(r'\d{2} \d{2} \d{2} \d{2}')
+```
+
+This could be shortened down to:
+
+```python
+phone_number = re.compile((\d{2} ){3}\d{2})
+```
+
+ref: [git-materials](https://github.com/datsoftlyngby/dat4sem2019spring-python-materials/blob/master/18-Regular-Expressions.ipynb)
+
 ### What is Selenium?
+
+**_Selenium automates browsers_**
+
+Primarily Selenium is used for automating web applications for testing purposes - However, is certainly not limited to just that. repetitive web-based administration tasks can also be automated as well
+
+**Starting a Selenium-Controlled Browser**
+
+```python
+from selenium import webdriver
+
+browser = webdriver.Chrome('./chromedriver.exe')
+browser.get('http://www.dr.dk')
+```
 
 ## Feature spaces
 
 ### What is a feature?
 
+Let's say we have a Person class:
+
+```python
+class Person:
+
+    def __init__(self, gender, age, height):
+        self.gender = gender
+        self.age = age
+        self.height = height
+```
+
+A Person is therefore described by three **features**:
+
+-   gender
+-   age
+-   height
+
 ### What is a feature vector?
+
+A **feature vector** for a Person would have three dimensions
+
+-   x1 = gender
+-   x2 = age
+-   x3 = height
 
 ## Neural Networks
 
@@ -466,7 +631,13 @@ ref: https://pythonhow.com/data-analysis-with-python-pandas
 
 ### How do you represent an image in a Numpy array?
 
+Say we have a 100 x 200 image, the ndarray would be representet like this
+
+(100, 200, 3) where the last dimension is the colors (BGR with opencv)
+
 ### What is a colour space?
+
+Color space is an abstract mathematical model which simply describes the range of colors as tuples of numbers, typically as 3 or 4 values or color components (e.g. RGB, HSV, CMYK).
 
 ## Movement Detection
 
