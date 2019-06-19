@@ -625,7 +625,29 @@ A **feature vector** for a Person would have three dimensions
 
 ### What is a neuron?
 
+Neurons are the basic unit of a neural network. Neruons have a number of inputs, a processor and an output. When the neuron activates, it accumulates all its incoming inputs, and if it goes over a certain threshold it fires a signal thru the axon.
+
+The important thing about neurons is that they can **learn**.
+
+![neruon](./img/neuron.png)
+
+As seen above, they have several inputs, or each input there's a weight (the weight of that specific connection). When the neuron activates, it computes its state, by adding all the incoming inputs multiplied by its corresponding connection weight. However, neurons always have one extra input, the bias, which is always 1, and has its own connection weight. This makes sure that even when all the inputs are none there's gonna be an activation in the neuron.
+
+![math1](./img/math1.png)
+
+After computing its state, the neuron passes it through its activation function, which normalizes the result (normally between 0-1).
+
+![math2](./img/math2.png)
+
+ref: https://github.com/cazala/synaptic/wiki/Neural-Networks-101
+
 ### What is an activation function?
+
+The activation function is usually a sigmoid function, either a [Logistic](http://en.wikipedia.org/wiki/Logistic_function) or an [Hyperbolic Tangent](http://mathworld.wolfram.com/HyperbolicTangent.html).
+
+![math3](./img/math3.png)
+
+ref: https://github.com/cazala/synaptic/wiki/Neural-Networks-101
 
 ## Image Proc. (OpenCV)
 
