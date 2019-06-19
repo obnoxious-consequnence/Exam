@@ -643,7 +643,7 @@ ref: https://github.com/cazala/synaptic/wiki/Neural-Networks-101
 
 ### What is an activation function?
 
-The activation function is usually a sigmoid function, either a [Logistic](http://en.wikipedia.org/wiki/Logistic_function) or an [Hyperbolic Tangent](http://mathworld.wolfram.com/HyperbolicTangent.html).
+The activation function is usually a sigmoid function
 
 ![math3](./img/math3.png)
 
