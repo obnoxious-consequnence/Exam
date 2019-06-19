@@ -665,4 +665,21 @@ Color space is an abstract mathematical model which simply describes the range o
 
 ### What is an `object`?
 
+Could be anything, depends on what you wonna track
+
+Nonetheless, let's say you wonna track a chimpanzee, you can look for change in pixels, and from that define the chimpanzee or surrounding leaves as an object
+
 ### How does movement detection work?
+
+Let's break an [example](https://github.com/datsoftlyngby/dat4sem2019spring-python-materials/blob/master/movement_detection.py) down:
+
+**Setting up the frame**
+
+-   Select the movie file
+-   Setup width and height of the frame
+
+**Time to process the frame**
+
+-   Convert the frame to grayscale and blur it.
+-   Compute the absolute difference between the current frame and the first frame.
+-   Dilate the thresholded image to fill in holes, then find contours on thresholded image
